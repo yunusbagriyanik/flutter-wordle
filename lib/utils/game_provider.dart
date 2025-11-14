@@ -1,20 +1,91 @@
 import 'dart:math';
 
+import 'package:characters/characters.dart';
+
 class WorldeGame {
   int rowId = 0;
   int letterId = 0;
 
   static String game_message = "";
   static String game_guess = "";
+
   static List<String> word_list = [
-    "world",
-    "fight",
-    "brain",
-    "plane",
-    "earth",
-    "robot",
-    "",
+    "abone",
+    "acıma",
+    "adres",
+    "afişe",
+    "ahenk",
+    "ailem",
+    "akşam",
+    "akide",
+    "alaka",
+    "alıcı",
+    "alkış",
+    "almak",
+    "ambar",
+    "amber",
+    "anket",
+    "anlık",
+    "arama",
+    "arıza",
+    "arzum",
+    "aslen",
+    "asmak",
+    "aşama",
+    "atmak",
+    "aygıt",
+    "aymaz",
+    "azami",
+    "azlık",
+    "babam",
+    "bacak",
+    "bakım",
+    "balık",
+    "banka",
+    "basit",
+    "başka",
+    "bayan",
+    "belge",
+    "belki",
+    "benim",
+    "beton",
+    "birim",
+    "bilgi",
+    "bilet",
+    "borsa",
+    "boyut",
+    "buzlu",
+    "çağrı",
+    "cahil",
+    "çanta",
+    "çevre",
+    "çıkar",
+    "çimen",
+    "çorap",
+    "deren",
+    "derin",
+    "dünya",
+    "duvar",
+    "efsun",
+    "eğmek",
+    "eklem",
+    "ekmek",
+    "elmas",
+    "emlak",
+    "evlat",
+    "fazıl",
+    "fikir",
+    "filiz",
+    "fizik",
+    "fiyat",
+    "fişek",
+    "kalem",
+    "kalıp",
+    "kanat",
+    "kanun",
+    "kapak",
   ];
+
   static bool gameOver = false;
 
   static List<Letter> wordleRow = List.generate(5, (index) => Letter("", 0));
@@ -22,6 +93,10 @@ class WorldeGame {
     5,
     (index) => List.generate(5, (index) => Letter("", 0)),
   );
+
+  static String toUpperTr(String input) {
+    return input.replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase();
+  }
 
   void passTry() {
     rowId++;
@@ -37,7 +112,7 @@ class WorldeGame {
       selected = word_list[index];
     }
 
-    game_guess = selected.toUpperCase();
+    game_guess = toUpperTr(selected);
   }
 
   void resetGame() {
@@ -59,7 +134,12 @@ class WorldeGame {
   }
 
   bool checkWordExist(String word) {
-    return word_list.contains(word);
+    String upper = toUpperTr(word);
+    return word_list.any((w) => toUpperTr(w) == upper);
+  }
+
+  String normalize(String input) {
+    return input.characters.toString();
   }
 }
 
